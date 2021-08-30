@@ -1,0 +1,18 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+
+  <p>Add a new topic: </p>
+  <form action = "{% url 'learning_logs:new_topic' %}" method="POST">
+  <!-- In the above line, the action argumnent tells the browser where to send the data submitted in the form -->
+  <!-- In this case, we send it back to the view function "new_topic" -->
+    {% csrf_token %}
+    <!-- "csrf_token" is a template tag used to prevent attackers from gaining unauthorized access to the server -->
+    <!-- This kind of attack is called "cross-site request forgery -->
+    {{  form.as_p  }} <!-- Here, we display the form and "as_p" tells Django to render all form elements in paragraph format-->
+    <button name="submit">Add topic</button> <!-- Here, we define the submit button because Django doesn't create one -->
+  </form>
+
+{% endblock content %}
+
+
