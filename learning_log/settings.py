@@ -132,8 +132,13 @@ LOGIN_URL = 'users:login'
 # If an unauthenticated user requests a page protected by "@login_required" decorator, Django will send user to the above URL defined by "LOGIN_URL"
 
 # Heroku settings
-
+import os
 import django_heroku
 django_heroku.settings(locals())
+
+if os.environ.get('DEBUG') == 'TRUE':
+    DEBUG = True
+elif os.environ.get('DEBUG') == 'FALSE':
+    DEBUG = False
 
 
